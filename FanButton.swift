@@ -41,6 +41,12 @@ final class FanButton: NSObject, NSApplicationDelegate, NSPopoverDelegate {
         }
     }
 
+    /// Opening the app again (Spotlight, Finder) while it is already running shows the panel.
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !popover.isShown { togglePanel() }
+        return false
+    }
+
     func popoverWillShow(_ notification: Notification) { model.startWatching() }
     func popoverDidClose(_ notification: Notification) { model.stopWatching() }
 
@@ -60,6 +66,8 @@ final class FanButton: NSObject, NSApplicationDelegate, NSPopoverDelegate {
         panel.isOpaque = false
         panel.hasShadow = true
         panel.isReleasedWhenClosed = false
+        // Panels hide whenever their app isn't frontmost, and a menu-bar app almost never is.
+        panel.hidesOnDeactivate = false
         // Restores the spot it was dragged to last time; the first time, start near the top-right.
         if !panel.setFrameUsingName("FanButtonWidget"), let screen = NSScreen.main?.visibleFrame {
             panel.setFrameTopLeftPoint(NSPoint(x: screen.maxX - 250, y: screen.maxY - 20))

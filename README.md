@@ -8,8 +8,10 @@ The app drives ThermalForge's `status`, `set`, `max` and `auto` commands. The sl
 
 1. Install Xcode Command Line Tools if needed: `xcode-select --install`
 2. Install ThermalForge following its [official instructions](https://github.com/ProducerGuy/ThermalForge#install). Its installation uses an administrator password to set up the fan-control service. The project's compatibility list reports both 14-inch and 16-inch M5 Pro MacBook Pros; this app has not been tested on your Mac.
-3. In Terminal, go into this `FanButton` folder and run `bash build.sh`.
-4. Open `FanButton.app` and click the fan icon in the menu bar.
+3. In Terminal, go into this `FanButton` folder and run `bash build.sh`. It builds the app and copies it into your Applications folder.
+4. Open **FanButton** from Spotlight (⌘ Space, type "FanButton"), Launchpad or Applications, then click the fan icon in the menu bar.
+
+FanButton lives only in the menu bar, so it has no Dock icon while it runs. After you choose **Quit**, open it again the same way from Spotlight or Applications. Opening it while it's already running pops the panel open. To start it with your Mac, add it under System Settings → General → Login Items.
 
 Run `thermalforge status` to confirm the controller sees your fans. If a button reports an error, the panel shows ThermalForge's exact message; send that along. Keep ThermalForge's own menu-bar app in **Default** mode or closed so its profile doesn't change the speed after you press Automatic.
 
