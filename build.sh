@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 mkdir -p FanButton.app/Contents/MacOS
-swiftc -O FanButton.swift -o FanButton.app/Contents/MacOS/FanButton
+swiftc -O -parse-as-library *.swift -o FanButton.app/Contents/MacOS/FanButton
 cat > FanButton.app/Contents/Info.plist <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
